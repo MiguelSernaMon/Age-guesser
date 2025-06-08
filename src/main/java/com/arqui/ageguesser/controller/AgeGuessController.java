@@ -10,9 +10,14 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class AgeGuessController {
 
+    private final RestTemplate restTemplate;
+
+    public AgeGuessController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     @GetMapping("/age/{name}")
     public AgeDTO getAge(@PathVariable String name) {
-        RestTemplate restTemplate = new RestTemplate();
         String url = "https://api.agify.io?name=" + name;
         return restTemplate.getForObject(url, AgeDTO.class);
     }
