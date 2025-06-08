@@ -6,6 +6,8 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
+# Agregar permisos de ejecución al script mvnw
+RUN chmod +x ./mvnw
 RUN ./mvnw package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
